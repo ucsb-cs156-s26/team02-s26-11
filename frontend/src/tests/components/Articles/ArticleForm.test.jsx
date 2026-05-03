@@ -48,7 +48,7 @@ describe("ArticleForm tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <Router>
-          <ArticleForm initialContents={articlesFixtures.oneArticle } />
+          <ArticleForm initialContents={articlesFixtures.oneArticle} />
         </Router>
       </QueryClientProvider>,
     );
