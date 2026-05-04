@@ -6,17 +6,17 @@ import ArticleTable from "main/components/Articles/ArticleTable";
 import { useCurrentUser, hasRole } from "main/utils/useCurrentUser";
 import { Button } from "react-bootstrap";
 
-export default function RestaurantIndexPage() {
+export default function ArticleIndexPage() {
   const currentUser = useCurrentUser();
 
   const {
-    data: restaurants,
+    data: articles,
     error: _error,
     status: _status,
   } = useBackend(
     // Stryker disable next-line all : don't test internal caching of React Query
-    ["/api/restaurants/all"],
-    { method: "GET", url: "/api/restaurants/all" },
+    ["/api/articles/all"],
+    { method: "GET", url: "/api/articles/all" },
     // Stryker disable next-line all : don't test default value of empty list
     [],
   );
@@ -26,10 +26,10 @@ export default function RestaurantIndexPage() {
       return (
         <Button
           variant="primary"
-          href="/restaurants/create"
+          href="/articles/create"
           style={{ float: "right" }}
         >
-          Create Restaurant
+          Create Article
         </Button>
       );
     }
@@ -39,8 +39,8 @@ export default function RestaurantIndexPage() {
     <BasicLayout>
       <div className="pt-2">
         {createButton()}
-        <h1>Restaurants</h1>
-        <RestaurantTable restaurants={restaurants} currentUser={currentUser} />
+        <h1>Articles</h1>
+        <ArticleTable articles={articles} currentUser={currentUser} />
       </div>
     </BasicLayout>
   );
