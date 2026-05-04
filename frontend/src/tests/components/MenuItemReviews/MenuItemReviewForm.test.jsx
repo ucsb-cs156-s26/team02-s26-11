@@ -42,6 +42,9 @@ describe("MenuItemReviewForm tests", () => {
       const header = screen.getByText(headerText);
       expect(header).toBeInTheDocument();
     });
+    expect(screen.getByTestId(`${testId}-reviewerEmail`)).toBeInTheDocument();
+    expect(screen.getByTestId(`${testId}-comments`)).toBeInTheDocument();
+
   });
 
   test("renders correctly when passing in initialContents", async () => {
