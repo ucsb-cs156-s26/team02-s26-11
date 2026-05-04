@@ -18,7 +18,13 @@ vi.mock("react-router", async () => {
 describe("MenuItemReviewForm tests", () => {
   const queryClient = new QueryClient();
 
-  const expectedHeaders = ["ItemId", "ReviewerEmail", "Stars", "DateReviewed", "Comments"];
+  const expectedHeaders = [
+    "ItemId",
+    "ReviewerEmail",
+    "Stars",
+    "DateReviewed",
+    "Comments",
+  ];
   const testId = "MenuItemReviewForm";
 
   test("renders correctly with no initialContents", async () => {
@@ -42,7 +48,9 @@ describe("MenuItemReviewForm tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <Router>
-          <MenuItemReviewForm initialContents={menuItemReviewFixtures.oneMenuItemReview} />
+          <MenuItemReviewForm
+            initialContents={menuItemReviewFixtures.oneMenuItemReview}
+          />
         </Router>
       </QueryClientProvider>,
     );
@@ -93,7 +101,7 @@ describe("MenuItemReviewForm tests", () => {
     expect(screen.getByText(/Date Reviewed is required/)).toBeInTheDocument();
   });
 
-  test("test for max itemid length", async () => {
+  test("for max itemid length", async () => {
     render(
       <QueryClientProvider client={queryClient}>
         <Router>
@@ -107,12 +115,12 @@ describe("MenuItemReviewForm tests", () => {
     const itemIdInput = screen.getByTestId(`${testId}-itemId`);
     fireEvent.change(itemIdInput, { target: { value: "a".repeat(19) } });
     fireEvent.click(submitButton);
-     await waitFor(() => {
+    await waitFor(() => {
       expect(screen.getByText(/Max length 18 characters/)).toBeInTheDocument();
     });
   });
 
-  test("test for star min/max values", async () => {
+  test("for star min/max values", async () => {
     render(
       <QueryClientProvider client={queryClient}>
         <Router>
@@ -126,13 +134,13 @@ describe("MenuItemReviewForm tests", () => {
     const starsInput = screen.getByTestId(`${testId}-stars`);
     fireEvent.change(starsInput, { target: { value: "0" } });
     fireEvent.click(submitButton);
-     await waitFor(() => {
+    await waitFor(() => {
       expect(screen.getByText(/Stars must be at least 1/)).toBeInTheDocument();
     });
 
     fireEvent.change(starsInput, { target: { value: "6" } });
     fireEvent.click(submitButton);
-     await waitFor(() => {
+    await waitFor(() => {
       expect(screen.getByText(/Stars must be at most 5/)).toBeInTheDocument();
     });
   });

@@ -127,8 +127,7 @@ function MenuItemReviewForm({
           id="comments"
           type="text"
           isInvalid={Boolean(errors.comments)}
-          {...register("comments", {
-        })}
+          {...register("comments", {})}
         />
         <Form.Control.Feedback type="invalid">
           {errors.comments?.message}
