@@ -44,7 +44,6 @@ describe("MenuItemReviewForm tests", () => {
     });
     expect(screen.getByTestId(`${testId}-reviewerEmail`)).toBeInTheDocument();
     expect(screen.getByTestId(`${testId}-comments`)).toBeInTheDocument();
-
   });
 
   test("renders correctly when passing in initialContents", async () => {
