@@ -22,7 +22,7 @@ vi.mock("react-router", async () => {
 describe("HelpRequestTable tests", () => {
   const queryClient = new QueryClient();
 
-  const expectedHeaders = [
+  const expectedHeaders = [	
     "id",
     "Requester Email",
     "Team Id",
@@ -40,7 +40,7 @@ describe("HelpRequestTable tests", () => {
     "requestTime",
     "explanation",
     "solved",
-  ];
+    ];
 
   const testId = "HelpRequestTable";
 
@@ -70,6 +70,7 @@ describe("HelpRequestTable tests", () => {
       expect(fieldElement).not.toBeInTheDocument();
     });
   });
+
 
   test("Has the expected column headers, content and buttons for admin user", () => {
     // arrange
@@ -105,12 +106,14 @@ describe("HelpRequestTable tests", () => {
       screen.getByTestId(`${testId}-cell-row-0-col-requesterEmail`),
     ).toHaveTextContent("mike@ucsb.ed");
 
+
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent(
       "3",
     );
     expect(
       screen.getByTestId(`${testId}-cell-row-1-col-requesterEmail`),
     ).toHaveTextContent("lisa@ucsb.edu");
+
 
     const editButton = screen.getByTestId(
       `${testId}-cell-row-0-col-Edit-button`,
@@ -159,6 +162,7 @@ describe("HelpRequestTable tests", () => {
       screen.getByTestId(`${testId}-cell-row-0-col-requesterEmail`),
     ).toHaveTextContent("mike@ucsb.ed");
 
+
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent(
       "3",
     );
@@ -193,6 +197,7 @@ describe("HelpRequestTable tests", () => {
     expect(
       screen.getByTestId(`${testId}-cell-row-0-col-requesterEmail`),
     ).toHaveTextContent("mike@ucsb.ed");
+
 
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent(
       "3",
@@ -244,6 +249,7 @@ describe("HelpRequestTable tests", () => {
       screen.getByTestId(`${testId}-cell-row-0-col-requesterEmail`),
     ).toHaveTextContent("mike@ucsb.ed");
 
+
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent(
       "3",
     );
@@ -264,6 +270,5 @@ describe("HelpRequestTable tests", () => {
     await waitFor(() => expect(axiosMock.history.delete.length).toBe(1));
     expect(axiosMock.history.delete[0].url).toBe("/api/helprequests");
     expect(axiosMock.history.delete[0].params).toEqual({ id: 2 });
-    expect(toast).toHaveBeenCalledWith({ message: "Request Deleted" });
-  });
+    expect(toast).toHaveBeenCalledWith({ message: "Request Deleted" });  });
 });

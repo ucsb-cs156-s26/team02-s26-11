@@ -70,7 +70,5 @@ export default function HelpRequestsTable({ requests, currentUser }) {
     );
   }
 
-  return (
-    <OurTable data={requests} columns={columns} testid={"HelpRequestTable"} />
-  );
+  return <OurTable data={requests} columns={columns} testid={"HelpRequestTable"} />;
 }

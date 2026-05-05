@@ -10,7 +10,7 @@ export default {
 };
 
 const Template = (args) => {
-  return <HelpRequestTable {...args} />;
+  return <HelpRequestTable  {...args} />;
 };
 
 export const Empty = Template.bind({});
