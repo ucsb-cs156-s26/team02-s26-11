@@ -1,5 +1,5 @@
 const helpRequestFixtures = {
-  oneHelpRequest: [
+  oneHelpRequest: 
     {
       id: 1,
       requesterEmail: "student@ucsb.edu",
@@ -8,9 +8,7 @@ const helpRequestFixtures = {
       requestTime: "2025-02-19T15:09:42.15",
       explanation: "Need General Assistance",
       solved: true
-    }
-  ],
-
+    },
   threeHelpRequests: [
     {
       id: 2,
