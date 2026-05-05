@@ -15,11 +15,10 @@ vi.mock("react-router", async () => {
   };
 });
 
-
 describe("HelpRequestForm tests", () => {
   const queryClient = new QueryClient();
 
-  const expectedHeaders = [	
+  const expectedHeaders = [
     "Requester Email",
     "Team ID",
     "Table or Breakout Room",
@@ -27,7 +26,7 @@ describe("HelpRequestForm tests", () => {
     "Explanation",
     "Solved",
   ];
-  
+
   const testId = "HelpRequestForm";
 
   test("renders correctly with no initialContents", async () => {
@@ -51,7 +50,9 @@ describe("HelpRequestForm tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <Router>
-          <HelpRequestForm initialContents={helpRequestFixtures.oneHelpRequest} />
+          <HelpRequestForm
+            initialContents={helpRequestFixtures.oneHelpRequest}
+          />
         </Router>
       </QueryClientProvider>,
     );
@@ -97,9 +98,13 @@ describe("HelpRequestForm tests", () => {
     fireEvent.click(submitButton);
 
     await screen.findByText(/requestTime is required/);
-    expect(screen.getByText(/Requester's Email is required/)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Requester's Email is required/),
+    ).toBeInTheDocument();
     expect(screen.getByText(/Team ID is required/)).toBeInTheDocument();
-    expect(screen.getByText(/Table or Breakout Room is required/)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Table or Breakout Room is required/),
+    ).toBeInTheDocument();
     expect(screen.getByText(/Explanation is required/)).toBeInTheDocument();
 
     const emailInput = screen.getByTestId(`${testId}-requesterEmail`);
@@ -107,7 +112,9 @@ describe("HelpRequestForm tests", () => {
     fireEvent.click(submitButton);
 
     await waitFor(() => {
-      expect(screen.getByText(/Max Email length is 255 characters/)).toBeInTheDocument();
+      expect(
+        screen.getByText(/Max Email length is 255 characters/),
+      ).toBeInTheDocument();
     });
   });
 });
