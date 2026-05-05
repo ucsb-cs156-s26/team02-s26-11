@@ -2,22 +2,12 @@ import React from "react";
 import OurTable, { ButtonColumn } from "main/components/OurTable";
 
 import { useBackendMutation } from "main/utils/useBackend";
+import {
+  cellToAxiosParamsDelete,
+  onDeleteSuccess,
+} from "main/utils/recommendationRequestUtils";
 import { useNavigate } from "react-router";
 import { hasRole } from "main/utils/useCurrentUser";
-
-export function cellToAxiosParamsDelete(cell) {
-  return {
-    url: "/api/recommendationrequests",
-    method: "DELETE",
-    params: {
-      id: cell.row.original.id,
-    },
-  };
-}
-
-export function onDeleteSuccess(message) {
-  console.log(message);
-}
 
 export default function RecommendationRequestTable({
   recommendationRequests,

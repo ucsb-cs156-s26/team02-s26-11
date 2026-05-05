@@ -99,6 +99,18 @@ describe("RecommendationRequestTable tests", () => {
     expect(
       screen.getByTestId(`${testId}-cell-row-0-col-professorEmail`),
     ).toHaveTextContent("professor1@ucsb.edu");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-0-col-explanation`),
+    ).toHaveTextContent("I am applying for graduate school.");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-0-col-dateRequested`),
+    ).toHaveTextContent("2026-05-01T09:00:00");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-0-col-dateNeeded`),
+    ).toHaveTextContent("2026-06-01T17:00:00");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-0-col-done`),
+    ).toHaveTextContent("false");
 
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent(
       "2",
@@ -222,6 +234,7 @@ describe("RecommendationRequestTable tests", () => {
     fireEvent.click(deleteButton);
 
     await waitFor(() => expect(axiosMock.history.delete.length).toBe(1));
+    expect(axiosMock.history.delete[0].url).toBe("/api/recommendationrequests");
     expect(axiosMock.history.delete[0].params).toEqual({ id: 1 });
   });
 });
