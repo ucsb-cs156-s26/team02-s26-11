@@ -22,7 +22,7 @@ vi.mock("react-router", async () => {
 describe("HelpRequestTable tests", () => {
   const queryClient = new QueryClient();
 
-  const expectedHeaders = [	
+  const expectedHeaders = [
     "id",
     "Requester Email",
     "Team Id",
@@ -40,7 +40,7 @@ describe("HelpRequestTable tests", () => {
     "requestTime",
     "explanation",
     "solved",
-    ];
+  ];
 
   const testId = "HelpRequestTable";
 
@@ -70,7 +70,6 @@ describe("HelpRequestTable tests", () => {
       expect(fieldElement).not.toBeInTheDocument();
     });
   });
-
 
   test("Has the expected column headers, content and buttons for admin user", () => {
     // arrange
@@ -104,16 +103,14 @@ describe("HelpRequestTable tests", () => {
     );
     expect(
       screen.getByTestId(`${testId}-cell-row-0-col-requesterEmail`),
-    ).toHaveTextContent("mike@ucsb.ed");
-
+    ).toHaveTextContent("george@ucsb.edu");
 
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent(
       "3",
     );
     expect(
       screen.getByTestId(`${testId}-cell-row-1-col-requesterEmail`),
-    ).toHaveTextContent("lisa@ucsb.edu");
-
+    ).toHaveTextContent("brian@ucsb.edu");
 
     const editButton = screen.getByTestId(
       `${testId}-cell-row-0-col-Edit-button`,
@@ -160,15 +157,14 @@ describe("HelpRequestTable tests", () => {
     );
     expect(
       screen.getByTestId(`${testId}-cell-row-0-col-requesterEmail`),
-    ).toHaveTextContent("mike@ucsb.ed");
-
+    ).toHaveTextContent("george@ucsb.edu");
 
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent(
       "3",
     );
     expect(
       screen.getByTestId(`${testId}-cell-row-1-col-requesterEmail`),
-    ).toHaveTextContent("lisa@ucsb.edu");
+    ).toHaveTextContent("brian@ucsb.edu");
 
     expect(screen.queryByText("Delete")).not.toBeInTheDocument();
     expect(screen.queryByText("Edit")).not.toBeInTheDocument();
@@ -196,15 +192,14 @@ describe("HelpRequestTable tests", () => {
     );
     expect(
       screen.getByTestId(`${testId}-cell-row-0-col-requesterEmail`),
-    ).toHaveTextContent("mike@ucsb.ed");
-
+    ).toHaveTextContent("george@ucsb.edu");
 
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent(
       "3",
     );
     expect(
       screen.getByTestId(`${testId}-cell-row-1-col-requesterEmail`),
-    ).toHaveTextContent("lisa@ucsb.edu");
+    ).toHaveTextContent("brian@ucsb.edu");
 
     const editButton = screen.getByTestId(
       `${testId}-cell-row-0-col-Edit-button`,
@@ -247,15 +242,14 @@ describe("HelpRequestTable tests", () => {
     );
     expect(
       screen.getByTestId(`${testId}-cell-row-0-col-requesterEmail`),
-    ).toHaveTextContent("mike@ucsb.ed");
-
+    ).toHaveTextContent("george@ucsb.edu");
 
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent(
       "3",
     );
     expect(
       screen.getByTestId(`${testId}-cell-row-1-col-requesterEmail`),
-    ).toHaveTextContent("lisa@ucsb.edu");
+    ).toHaveTextContent("brian@ucsb.edu");
 
     const deleteButton = screen.getByTestId(
       `${testId}-cell-row-0-col-Delete-button`,
@@ -266,9 +260,9 @@ describe("HelpRequestTable tests", () => {
     fireEvent.click(deleteButton);
 
     // assert - check that the delete endpoint was called
-
     await waitFor(() => expect(axiosMock.history.delete.length).toBe(1));
     expect(axiosMock.history.delete[0].url).toBe("/api/helprequests");
     expect(axiosMock.history.delete[0].params).toEqual({ id: 2 });
-    expect(toast).toHaveBeenCalledWith({ message: "Request Deleted" });  });
+    expect(toast).toHaveBeenCalledWith({ message: "Request Deleted" });
+  });
 });
