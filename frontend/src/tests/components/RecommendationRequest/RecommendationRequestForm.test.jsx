@@ -28,7 +28,7 @@ describe("RecommendationRequestForm tests", () => {
   ];
   const testId = "RecommendationRequestForm";
 
-  test("renders correctly with no initialContents", async () => {
+  test("renders correctly with no initialContents", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <Router>
@@ -37,7 +37,6 @@ describe("RecommendationRequestForm tests", () => {
       </QueryClientProvider>,
     );
 
-    expect(await screen.findByText(/Create/)).toBeInTheDocument();
     expect(screen.getByTestId(`${testId}-submit`)).toHaveTextContent("Create");
     expect(screen.getByTestId(`${testId}-cancel`)).toHaveTextContent("Cancel");
 
@@ -60,9 +59,9 @@ describe("RecommendationRequestForm tests", () => {
       </QueryClientProvider>,
     );
 
-    expect(await screen.findByText(/Create/)).toBeInTheDocument();
     expect(screen.getByTestId(`${testId}-submit`)).toHaveTextContent("Create");
     expect(screen.getByTestId(`${testId}-cancel`)).toHaveTextContent("Cancel");
+
     expectedHeaders.forEach((headerText) => {
       const header = screen.getByText(headerText);
       expect(header).toBeInTheDocument();
@@ -115,8 +114,7 @@ describe("RecommendationRequestForm tests", () => {
       </QueryClientProvider>,
     );
 
-    expect(await screen.findByText(/Create/)).toBeInTheDocument();
-    const submitButton = screen.getByText(/Create/);
+    const submitButton = screen.getByTestId(`${testId}-submit`);
     fireEvent.click(submitButton);
 
     await screen.findByText(/Requester Email is required/);
