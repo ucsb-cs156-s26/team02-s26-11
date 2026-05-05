@@ -1,32 +1,50 @@
-import { onDeleteSuccess, cellToAxiosParamsDelete } from "../../main/utils/helpRequestUtils";
-import { toast } from "react-toastify";
+import {
+  onDeleteSuccess,
+  cellToAxiosParamsDelete,
+} from "main/utils/helpRequestUtils";
+import mockConsole from "tests/testutils/mockConsole";
 
-jest.mock("react-toastify");
+const mockToast = vi.fn();
+vi.mock("react-toastify", async (importOriginal) => {
+  const originalModule = await importOriginal();
+  return {
+    ...originalModule,
+    toast: vi.fn((x) => mockToast(x)),
+  };
+});
 
-describe("helpRequestUtils tests", () => {
-    describe("onDeleteSuccess", () => {
-        it("logs the message to console and shows a toast", () => {
-            const consoleSpy = jest.spyOn(console, "log").mockImplementation();
-            const message = "HelpRequest with id 1 was deleted";
+describe("helpRequestUtils", () => {
+  describe("onDeleteSuccess", () => {
+    test("It puts the message on console.log and in a toast", () => {
+      // arrange
+      const restoreConsole = mockConsole();
 
-            onDeleteSuccess(message);
+      // act
+      onDeleteSuccess("abc");
 
-            expect(consoleSpy).toHaveBeenCalledWith(message);
-            expect(toast).toHaveBeenCalledWith(message);
-            consoleSpy.mockRestore();
-        });
+      // assert
+      expect(mockToast).toHaveBeenCalledWith("abc");
+      expect(console.log).toHaveBeenCalled();
+      const message = console.log.mock.calls[0][0];
+      expect(message).toMatch("abc");
+
+      restoreConsole();
     });
+  });
+  describe("cellToAxiosParamsDelete", () => {
+    test("It returns the correct params", () => {
+      // arrange
+      const cell = { row: { original: { id: 17 } } };
 
-    describe("cellToAxiosParamsDelete", () => {
-        it("returns the correct parameters", () => {
-            const cell = { row: { original: { id: 17 } } };
-            const result = cellToAxiosParamsDelete(cell);
+      // act
+      const result = cellToAxiosParamsDelete(cell);
 
-            expect(result).toEqual({
-                url: "/api/helprequests",
-                method: "DELETE",
-                params: { id: 17 }
-            });
-        });
+      // assert
+      expect(result).toEqual({
+        url: "/api/helprequest",
+        method: "DELETE",
+        params: { id: 17 },
+      });
     });
+  });
 });
