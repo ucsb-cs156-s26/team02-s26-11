@@ -32,8 +32,7 @@ const recommendationRequestFixtures = {
       id: 3,
       requesterEmail: "student3@ucsb.edu",
       professorEmail: "professor3@ucsb.edu",
-      explanation:
-        "I am requesting a recommendation for a research position.",
+      explanation: "I am requesting a recommendation for a research position.",
       dateRequested: "2026-05-03T13:15:00",
       dateNeeded: "2026-06-15T12:00:00",
       done: false,

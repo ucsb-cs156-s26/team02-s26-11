@@ -1,7 +1,7 @@
 import { recommendationRequestFixtures } from "main/fixtures/recommendationRequestFixtures";
 
 describe("recommendationRequestFixtures", () => {
-  test("has oneRecommendationRequest", () => {
+  test("has expected oneRecommendationRequest", () => {
     expect(recommendationRequestFixtures.oneRecommendationRequest).toEqual({
       id: 1,
       requesterEmail: "student@ucsb.edu",
@@ -14,7 +14,36 @@ describe("recommendationRequestFixtures", () => {
     });
   });
 
-  test("has threeRecommendationRequests", () => {
-    expect(recommendationRequestFixtures.threeRecommendationRequests.length).toBe(3);
+  test("has expected threeRecommendationRequests", () => {
+    expect(recommendationRequestFixtures.threeRecommendationRequests).toEqual([
+      {
+        id: 1,
+        requesterEmail: "student1@ucsb.edu",
+        professorEmail: "professor1@ucsb.edu",
+        explanation: "I am applying for graduate school.",
+        dateRequested: "2026-05-01T09:00:00",
+        dateNeeded: "2026-06-01T17:00:00",
+        done: false,
+      },
+      {
+        id: 2,
+        requesterEmail: "student2@ucsb.edu",
+        professorEmail: "professor2@ucsb.edu",
+        explanation: "I need a letter for a scholarship application.",
+        dateRequested: "2026-05-02T10:30:00",
+        dateNeeded: "2026-05-20T23:59:00",
+        done: true,
+      },
+      {
+        id: 3,
+        requesterEmail: "student3@ucsb.edu",
+        professorEmail: "professor3@ucsb.edu",
+        explanation:
+          "I am requesting a recommendation for a research position.",
+        dateRequested: "2026-05-03T13:15:00",
+        dateNeeded: "2026-06-15T12:00:00",
+        done: false,
+      },
+    ]);
   });
 });
