@@ -1,12 +1,10 @@
-const restaurantFixtures = {
-  oneOrganization: [
-    {
-      orgCode: "ZPR",
-      orgTranslationShort: "ZETA PHI RHO",
-      orgTranslation: "ZETA PHI RHO",
-      inactive: false,
-    },
-  ],
+const ucsbOrganizationFixtures = {
+  oneOrganization: {
+    orgCode: "ZPR",
+    orgTranslationShort: "ZETA PHI RHO",
+    orgTranslation: "ZETA PHI RHO",
+    inactive: false,
+  },
 
   threeOrganizations: [
     {
@@ -32,4 +30,4 @@ const restaurantFixtures = {
   ],
 };
 
-export { restaurantFixtures };
+export { ucsbOrganizationFixtures };
