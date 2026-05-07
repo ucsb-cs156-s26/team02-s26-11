@@ -73,7 +73,7 @@ function UCSBOrganizationForm({
           isInvalid={Boolean(errors.orgTranslation)}
           {...register("orgTranslation", {
             required: "Org Translation is required.",
-              maxLength: {
+            maxLength: {
               value: 255,
               message: "Max length 255 characters",
             },
@@ -91,9 +91,7 @@ function UCSBOrganizationForm({
           type="checkbox"
           label="Inactive"
           {...register("inactive")}
-          
         />
-
       </Form.Group>
 
       <Button type="submit" data-testid={testIdPrefix + "-submit"}>

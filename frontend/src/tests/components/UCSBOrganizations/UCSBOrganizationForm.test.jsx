@@ -10,7 +10,7 @@ const mockedNavigate = vi.fn();
 vi.mock("react-router", async () => {
   const originalModule = await vi.importActual("react-router");
   return {
-    ...originalModule, 
+    ...originalModule,
     useNavigate: () => mockedNavigate,
   };
 });
@@ -26,7 +26,7 @@ describe("UCSBOrganizationForm tests", () => {
   ];
   const testId = "UCSBOrganizationForm";
 
-  test("renders correctly with no initialContents",async () => {
+  test("renders correctly with no initialContents", async () => {
     render(
       <QueryClientProvider client={queryClient}>
         <Router>
@@ -47,7 +47,9 @@ describe("UCSBOrganizationForm tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <Router>
-          <UCSBOrganizationForm initialContents={ucsbOrganizationFixtures.oneOrganization} />
+          <UCSBOrganizationForm
+            initialContents={ucsbOrganizationFixtures.oneOrganization}
+          />
         </Router>
       </QueryClientProvider>,
     );
@@ -93,7 +95,9 @@ describe("UCSBOrganizationForm tests", () => {
     fireEvent.click(submitButton);
 
     await screen.findByText(/Org Code is required/);
-    expect(screen.getByText(/Org Translation Short is required/)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Org Translation Short is required/),
+    ).toBeInTheDocument();
     expect(screen.getByText(/Org Translation is required/)).toBeInTheDocument();
 
     const orgCodeInput = screen.getByTestId(`${testId}-orgCode`);
@@ -103,7 +107,6 @@ describe("UCSBOrganizationForm tests", () => {
     await waitFor(() => {
       expect(screen.getByText(/Max length 255 characters/)).toBeInTheDocument();
     });
-
   });
 
   test("that the orgTranslationShortInput is validated correctly", async () => {
@@ -119,15 +122,18 @@ describe("UCSBOrganizationForm tests", () => {
     const submitButton = screen.getByText(/Create/);
     fireEvent.click(submitButton);
 
-    const orgTranslationShortInput = screen.getByTestId(`${testId}-orgTranslationShort`);
-    fireEvent.change(orgTranslationShortInput, { target: { value: "a".repeat(256) } });
+    const orgTranslationShortInput = screen.getByTestId(
+      `${testId}-orgTranslationShort`,
+    );
+    fireEvent.change(orgTranslationShortInput, {
+      target: { value: "a".repeat(256) },
+    });
     fireEvent.click(submitButton);
 
     await waitFor(() => {
       expect(screen.getByText(/Max length 255 characters/)).toBeInTheDocument();
     });
   });
-
 
   test("that the orgTranslationInput is validated correctly", async () => {
     render(
@@ -143,12 +149,13 @@ describe("UCSBOrganizationForm tests", () => {
     fireEvent.click(submitButton);
 
     const orgTranslationInput = screen.getByTestId(`${testId}-orgTranslation`);
-    fireEvent.change(orgTranslationInput, { target: { value: "a".repeat(256) } });
+    fireEvent.change(orgTranslationInput, {
+      target: { value: "a".repeat(256) },
+    });
     fireEvent.click(submitButton);
 
     await waitFor(() => {
       expect(screen.getByText(/Max length 255 characters/)).toBeInTheDocument();
     });
   });
-
 });
