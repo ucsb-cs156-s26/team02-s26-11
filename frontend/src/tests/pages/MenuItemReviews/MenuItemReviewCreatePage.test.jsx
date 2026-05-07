@@ -56,7 +56,9 @@ describe("MenuItemReviewCreatePage tests", () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByLabelText("ItemId")).toBeInTheDocument();
+      expect(
+        screen.getByTestId("MenuItemReviewForm-itemId"),
+      ).toBeInTheDocument();
     });
   });
 
@@ -82,22 +84,28 @@ describe("MenuItemReviewCreatePage tests", () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByTestId("ItemId")).toBeInTheDocument();
+      expect(
+        screen.getByTestId("MenuItemReviewForm-itemId"),
+      ).toBeInTheDocument();
     });
 
-    const itemIdInput = screen.getByTestId("ItemId");
+    const itemIdInput = screen.getByTestId("MenuItemReviewForm-itemId");
     expect(itemIdInput).toBeInTheDocument();
 
-    const reviewerEmailInput = screen.getByTestId("ReviewerEmail");
+    const reviewerEmailInput = screen.getByTestId(
+      "MenuItemReviewForm-reviewerEmail",
+    );
     expect(reviewerEmailInput).toBeInTheDocument();
 
-    const starsInput = screen.getByTestId("Stars");
+    const starsInput = screen.getByTestId("MenuItemReviewForm-stars");
     expect(starsInput).toBeInTheDocument();
 
-    const dateReviewedInput = screen.getByTestId("DateReviewed");
+    const dateReviewedInput = screen.getByTestId(
+      "MenuItemReviewForm-dateReviewed",
+    );
     expect(dateReviewedInput).toBeInTheDocument();
 
-    const commentsInput = screen.getByTestId("Comments");
+    const commentsInput = screen.getByTestId("MenuItemReviewForm-comments");
     expect(commentsInput).toBeInTheDocument();
 
     const createButton = screen.getByText("Create");
@@ -117,10 +125,10 @@ describe("MenuItemReviewCreatePage tests", () => {
     await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
 
     expect(axiosMock.history.post[0].params).toEqual({
-      itemId: 1,
+      itemId: "1",
       reviewerEmail: "test@example.com",
-      stars: 5,
-      dateReviewed: "2023-01-01T00:00:00",
+      stars: "5",
+      dateReviewed: "2023-01-01T00:00",
       comments: "Great menu item!",
     });
 
