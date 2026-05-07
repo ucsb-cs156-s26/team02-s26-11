@@ -86,7 +86,6 @@ function UCSBOrganizationForm({
 
       <Form.Group className="mb-3">
         <Form.Check
-          data-testid={`${testIdPrefix}-inactive`}
           id="inactive"
           type="checkbox"
           label="Inactive"
@@ -94,7 +93,7 @@ function UCSBOrganizationForm({
         />
       </Form.Group>
 
-      <Button type="submit" data-testid={testIdPrefix + "-submit"}>
+      <Button type="submit">
         {buttonLabel}
       </Button>
       <Button
