@@ -38,8 +38,12 @@ describe("HelpRequestEditPage tests", () => {
       axiosMock = new AxiosMockAdapter(axios);
       axiosMock.reset();
       axiosMock.resetHistory();
-      axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
-      axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
+      axiosMock
+        .onGet("/api/currentUser")
+        .reply(200, apiCurrentUserFixtures.userOnly);
+      axiosMock
+        .onGet("/api/systemInfo")
+        .reply(200, systemInfoFixtures.showingNeither);
       axiosMock.onGet("/api/helprequests", { params: { id: 999 } }).timeout();
     });
 
@@ -62,7 +66,9 @@ describe("HelpRequestEditPage tests", () => {
         </QueryClientProvider>,
       );
       await screen.findByText("Edit Help Request");
-      expect(screen.queryByTestId("HelpRequestForm-requestTime")).not.toBeInTheDocument();
+      expect(
+        screen.queryByTestId("HelpRequestForm-requestTime"),
+      ).not.toBeInTheDocument();
       restoreConsole();
     });
   });
@@ -72,9 +78,13 @@ describe("HelpRequestEditPage tests", () => {
       axiosMock = new AxiosMockAdapter(axios);
       axiosMock.reset();
       axiosMock.resetHistory();
-      axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
-      axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
-      
+      axiosMock
+        .onGet("/api/currentUser")
+        .reply(200, apiCurrentUserFixtures.userOnly);
+      axiosMock
+        .onGet("/api/systemInfo")
+        .reply(200, systemInfoFixtures.showingNeither);
+
       axiosMock.onGet("/api/helprequests", { params: { id: 17 } }).reply(200, {
         id: 3,
         requesterEmail: "Example@testing.edu",
@@ -84,7 +94,7 @@ describe("HelpRequestEditPage tests", () => {
         solved: "false",
         requestTime: "2024-01-26T15:09",
       });
-      
+
       axiosMock.onPut("/api/helprequests").reply(200, {
         id: 3,
         requesterEmail: "ExampleNew@testing.edu",
@@ -117,12 +127,20 @@ describe("HelpRequestEditPage tests", () => {
       await screen.findByTestId("HelpRequestForm-id");
 
       const idField = screen.getByTestId("HelpRequestForm-id");
-      const requesterEmailField = screen.getByTestId("HelpRequestForm-requesterEmail");
+      const requesterEmailField = screen.getByTestId(
+        "HelpRequestForm-requesterEmail",
+      );
       const teamIdField = screen.getByTestId("HelpRequestForm-teamId");
-      const tableOrBreakoutRoomField = screen.getByTestId("HelpRequestForm-tableOrBreakoutRoom");
-      const explanationField = screen.getByTestId("HelpRequestForm-explanation");
+      const tableOrBreakoutRoomField = screen.getByTestId(
+        "HelpRequestForm-tableOrBreakoutRoom",
+      );
+      const explanationField = screen.getByTestId(
+        "HelpRequestForm-explanation",
+      );
       const solvedField = screen.getByTestId("HelpRequestForm-solved");
-      const requestTimeField = screen.getByTestId("HelpRequestForm-requestTime");
+      const requestTimeField = screen.getByTestId(
+        "HelpRequestForm-requestTime",
+      );
       const submitButton = screen.getByTestId("HelpRequestForm-submit");
 
       expect(idField).toBeInTheDocument();
@@ -141,16 +159,26 @@ describe("HelpRequestEditPage tests", () => {
       expect(requestTimeField).toHaveValue("2024-01-26T15:09");
       expect(submitButton).toHaveTextContent("Update");
 
-      fireEvent.change(requesterEmailField, { target: { value: "ExampleNew@testing.edu" } });
+      fireEvent.change(requesterEmailField, {
+        target: { value: "ExampleNew@testing.edu" },
+      });
       fireEvent.change(teamIdField, { target: { value: "Team00" } });
-      fireEvent.change(tableOrBreakoutRoomField, { target: { value: "Table11" } });      
-      fireEvent.change(explanationField, { target: { value: "76 Things wrong" } });      
-      fireEvent.change(solvedField, { target: { value: "true" } });      
-      fireEvent.change(requestTimeField, { target: { value: "2025-01-26T15:09" } });
+      fireEvent.change(tableOrBreakoutRoomField, {
+        target: { value: "Table11" },
+      });
+      fireEvent.change(explanationField, {
+        target: { value: "76 Things wrong" },
+      });
+      fireEvent.change(solvedField, { target: { value: "true" } });
+      fireEvent.change(requestTimeField, {
+        target: { value: "2025-01-26T15:09" },
+      });
       fireEvent.click(submitButton);
 
       await waitFor(() => expect(mockToast).toBeCalled());
-      expect(mockToast).toBeCalledWith(`Help Request Updated - id: 3 requester: ExampleNew@testing.edu`);
+      expect(mockToast).toBeCalledWith(
+        `Help Request Updated - id: 3 requester: ExampleNew@testing.edu`,
+      );
       expect(mockNavigate).toBeCalledWith({ to: "/helprequest" });
 
       expect(axiosMock.history.put.length).toBe(1); // times called
@@ -175,16 +203,24 @@ describe("HelpRequestEditPage tests", () => {
           </MemoryRouter>
         </QueryClientProvider>,
       );
-        
+
       await screen.findByTestId("HelpRequestForm-id");
 
       const idField = screen.getByTestId("HelpRequestForm-id");
-      const requesterEmailField = screen.getByTestId("HelpRequestForm-requesterEmail");
+      const requesterEmailField = screen.getByTestId(
+        "HelpRequestForm-requesterEmail",
+      );
       const teamIdField = screen.getByTestId("HelpRequestForm-teamId");
-      const tableOrBreakoutRoomField = screen.getByTestId("HelpRequestForm-tableOrBreakoutRoom");
-      const explanationField = screen.getByTestId("HelpRequestForm-explanation");
+      const tableOrBreakoutRoomField = screen.getByTestId(
+        "HelpRequestForm-tableOrBreakoutRoom",
+      );
+      const explanationField = screen.getByTestId(
+        "HelpRequestForm-explanation",
+      );
       const solvedField = screen.getByTestId("HelpRequestForm-solved");
-      const requestTimeField = screen.getByTestId("HelpRequestForm-requestTime");
+      const requestTimeField = screen.getByTestId(
+        "HelpRequestForm-requestTime",
+      );
       const submitButton = screen.getByTestId("HelpRequestForm-submit");
 
       expect(idField).toHaveValue("3");
@@ -196,16 +232,26 @@ describe("HelpRequestEditPage tests", () => {
       expect(requestTimeField).toHaveValue("2024-01-26T15:09");
       expect(submitButton).toBeInTheDocument();
 
-      fireEvent.change(requesterEmailField, { target: { value: "ExampleNew@testing.edu" } });
+      fireEvent.change(requesterEmailField, {
+        target: { value: "ExampleNew@testing.edu" },
+      });
       fireEvent.change(teamIdField, { target: { value: "Team00" } });
-      fireEvent.change(tableOrBreakoutRoomField, { target: { value: "Table11" } });      
-      fireEvent.change(explanationField, { target: { value: "76 Things wrong" } });      
-      fireEvent.change(solvedField, { target: { value: "true" } });      
-      fireEvent.change(requestTimeField, { target: { value: "2025-01-26T15:09" } });
+      fireEvent.change(tableOrBreakoutRoomField, {
+        target: { value: "Table11" },
+      });
+      fireEvent.change(explanationField, {
+        target: { value: "76 Things wrong" },
+      });
+      fireEvent.change(solvedField, { target: { value: "true" } });
+      fireEvent.change(requestTimeField, {
+        target: { value: "2025-01-26T15:09" },
+      });
       fireEvent.click(submitButton);
 
       await waitFor(() => expect(mockToast).toBeCalled());
-      expect(mockToast).toBeCalledWith(`Help Request Updated - id: 3 requester: ExampleNew@testing.edu`);
+      expect(mockToast).toBeCalledWith(
+        `Help Request Updated - id: 3 requester: ExampleNew@testing.edu`,
+      );
       expect(mockNavigate).toBeCalledWith({ to: "/helprequest" });
     });
   });
