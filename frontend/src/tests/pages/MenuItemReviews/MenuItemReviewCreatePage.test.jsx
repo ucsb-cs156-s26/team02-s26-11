@@ -67,7 +67,7 @@ describe("MenuItemReviewCreatePage tests", () => {
       itemId: 1,
       reviewerEmail: "test@example.com",
       stars: 5,
-      dateReviewed: "2023-01-01",
+      dateReviewed: "2023-01-01T00:00:00",
       comments: "Great menu item!",
     };
 
@@ -82,22 +82,22 @@ describe("MenuItemReviewCreatePage tests", () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByLabelText("Item Id")).toBeInTheDocument();
+      expect(screen.getByTestId("ItemId")).toBeInTheDocument();
     });
 
-    const itemIdInput = screen.getByLabelText("Item Id");
+    const itemIdInput = screen.getByTestId("ItemId");
     expect(itemIdInput).toBeInTheDocument();
 
-    const reviewerEmailInput = screen.getByLabelText("Reviewer Email");
+    const reviewerEmailInput = screen.getByTestId("ReviewerEmail");
     expect(reviewerEmailInput).toBeInTheDocument();
 
-    const starsInput = screen.getByLabelText("Stars");
+    const starsInput = screen.getByTestId("Stars");
     expect(starsInput).toBeInTheDocument();
 
-    const dateReviewedInput = screen.getByLabelText("Date Reviewed");
+    const dateReviewedInput = screen.getByTestId("DateReviewed");
     expect(dateReviewedInput).toBeInTheDocument();
 
-    const commentsInput = screen.getByLabelText("Comments");
+    const commentsInput = screen.getByTestId("Comments");
     expect(commentsInput).toBeInTheDocument();
 
     const createButton = screen.getByText("Create");
@@ -108,7 +108,9 @@ describe("MenuItemReviewCreatePage tests", () => {
       target: { value: "test@example.com" },
     });
     fireEvent.change(starsInput, { target: { value: 5 } });
-    fireEvent.change(dateReviewedInput, { target: { value: "2023-01-01" } });
+    fireEvent.change(dateReviewedInput, {
+      target: { value: "2023-01-01T00:00:00" },
+    });
     fireEvent.change(commentsInput, { target: { value: "Great menu item!" } });
     fireEvent.click(createButton);
 
@@ -118,12 +120,14 @@ describe("MenuItemReviewCreatePage tests", () => {
       itemId: 1,
       reviewerEmail: "test@example.com",
       stars: 5,
-      dateReviewed: "2023-01-01",
+      dateReviewed: "2023-01-01T00:00:00",
       comments: "Great menu item!",
     });
 
     // assert - check that the toast was called with the expected message
-    expect(mockToast).toBeCalledWith("New menu item review Created - id: 3");
-    expect(mockNavigate).toBeCalledWith({ to: "/restaurants" });
+    expect(mockToast).toBeCalledWith(
+      "New menu item review Created - id: 3 itemId: 1",
+    );
+    expect(mockNavigate).toBeCalledWith({ to: "/menuitemreviews" });
   });
 });
