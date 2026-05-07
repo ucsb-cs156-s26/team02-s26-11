@@ -19,6 +19,10 @@ import ArticleIndexPage from "main/pages/Article/ArticleIndexPage";
 import ArticleCreatePage from "main/pages/Article/ArticleCreatePage";
 import ArticleEditPage from "main/pages/Article/ArticleEditPage";
 
+import UCSBOrganizationIndexPage from "main/pages/UCSBOrganization/UCSBOrganizationIndexPage";
+import UCSBOrganizationCreatePage from "main/pages/UCSBOrganization/UCSBOrganizationCreatePage";
+import UCSBOrganizationEditPage from "main/pages/UCSBOrganization/UCSBOrganizationEditPage";
+
 import PlaceholderIndexPage from "main/pages/Placeholder/PlaceholderIndexPage";
 import PlaceholderCreatePage from "main/pages/Placeholder/PlaceholderCreatePage";
 import PlaceholderEditPage from "main/pages/Placeholder/PlaceholderEditPage";
@@ -190,6 +194,29 @@ function App() {
             exact
             path="/diningcommonsmenuitem/create"
             element={<UCSBDiningCommonsMenuItemCreatePage />}
+          />
+        </>
+      )}
+      {hasRole(currentUser, "ROLE_USER") && (
+        <>
+          <Route
+            exact
+            path="/ucsborganizations"
+            element={<UCSBOrganizationIndexPage />}
+          />
+        </>
+      )}
+      {hasRole(currentUser, "ROLE_ADMIN") && (
+        <>
+          <Route
+            exact
+            path="/ucsborganizations/edit/:orgCode"
+            element={<UCSBOrganizationEditPage />}
+          />
+          <Route
+            exact
+            path="/ucsborganizations/create"
+            element={<UCSBOrganizationCreatePage />}
           />
         </>
       )}
