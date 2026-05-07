@@ -27,7 +27,7 @@ export default function AppNavbar({
       >
         <Container>
           <Navbar.Brand as={Link} to="/">
-            team02
+            Example
           </Navbar.Brand>
 
           <Navbar.Toggle />
@@ -68,11 +68,19 @@ export default function AppNavbar({
                   <Nav.Link as={Link} to="/ucsbdates">
                     UCSB Dates
                   </Nav.Link>
+                  <Nav.Link as={Link} to="/articles">
+                    Articles
+                  </Nav.Link>
+                  <Nav.Link as={Link} to="/recommendationrequest">
+                    RecommendationRequest
+                  </Nav.Link>
                   <Nav.Link as={Link} to="/placeholder">
                     Placeholder
                   </Nav.Link>
                   <Nav.Link as={Link} to="/menuitemreviews">
                     Menu Item Reviews
+                  <Nav.Link as={Link} to="/helprequest">
+                    Help Request
                   </Nav.Link>
                 </>
               ) : (
