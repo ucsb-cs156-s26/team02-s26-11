@@ -26,7 +26,7 @@ export default function UCSBOrganizationCreatePage({ storybook = false }) {
     objectToAxiosParams,
     { onSuccess },
     // Stryker disable next-line all : hard to set up test for caching
-    ["/api/ucsborganizations/all"], // mutation makes this key stale so that pages relying on it reload
+    ["/api/ucsborganization/all"], // mutation makes this key stale so that pages relying on it reload
   );
 
   const { isSuccess } = mutation;
@@ -36,7 +36,7 @@ export default function UCSBOrganizationCreatePage({ storybook = false }) {
   };
 
   if (isSuccess && !storybook) {
-    return <Navigate to="/ucsborganizations" />;
+    return <Navigate to="/ucsborganization" />;
   }
 
   return (

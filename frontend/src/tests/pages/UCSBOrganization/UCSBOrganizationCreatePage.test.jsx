@@ -126,6 +126,6 @@ describe("UCSBOrganizationCreatePage tests", () => {
     expect(mockToast).toBeCalledWith(
       "New ucsborganization Created - orgCode: OSLI orgTranslation: OFFICE OF STUDENT LIFE",
     );
-    expect(mockNavigate).toBeCalledWith({ to: "/ucsborganizations" });
+    expect(mockNavigate).toBeCalledWith({ to: "/ucsborganization" });
   });
 });
