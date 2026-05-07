@@ -87,6 +87,7 @@ describe("HelpRequestIndexPage tests", () => {
         screen.getByTestId(`${testId}-cell-row-0-col-id`),
       ).toHaveTextContent("2");
     });
+
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent(
       "3",
     );
@@ -94,37 +95,36 @@ describe("HelpRequestIndexPage tests", () => {
       "4",
     );
 
-    const createRestaurantButton = screen.queryByText("Create Help Request");
-    expect(createRestaurantButton).not.toBeInTheDocument();
+    const createButton = screen.queryByText("Create Help Request");
+    expect(createButton).not.toBeInTheDocument();
 
-    const requesterEmail = screen.getByText("mike@ucsb.edu");
+    // Assertions updated to match helpRequestFixtures.threeHelpRequests row 0
+    const requesterEmail = screen.getByText("george@ucsb.edu");
     expect(requesterEmail).toBeInTheDocument();
 
     const teamId = screen.getByText("Team 3");
     expect(teamId).toBeInTheDocument();
 
-    const tableOrBreakoutRoom = screen.getByText("Table 6");
+    const tableOrBreakoutRoom = screen.getByText("Table 3");
     expect(tableOrBreakoutRoom).toBeInTheDocument();
 
-    const requestTime = screen.getByText("2024-02-26T15:10");
+    const requestTime = screen.getByText("2026-05-26T15:09:48.20");
     expect(requestTime).toBeInTheDocument();
 
-    const explanation = screen.getByText("Pushing commits strip imports");
+    const explanation = screen.getByText("commits are not working properly");
     expect(explanation).toBeInTheDocument();
 
     const solved = screen.getByTestId(`${testId}-cell-row-0-col-solved`);
-    expect(
-      screen.getByTestId(`${testId}-cell-row-0-col-solved`),
-    ).toHaveTextContent("false");
-
+    expect(solved).toHaveTextContent("false");
     expect(solved).toBeInTheDocument();
 
-    // for non-admin users, details button is visible, but the edit and delete buttons should not be visible
+    // For non-admin users, edit and delete buttons should not be visible
+    // Fixed leftover "RestaurantTable" bugs here
     expect(
-      screen.queryByTestId("RestaurantTable-cell-row-0-col-Delete-button"),
+      screen.queryByTestId(`${testId}-cell-row-0-col-Delete-button`),
     ).not.toBeInTheDocument();
     expect(
-      screen.queryByTestId("RestaurantTable-cell-row-0-col-Edit-button"),
+      screen.queryByTestId(`${testId}-cell-row-0-col-Edit-button`),
     ).not.toBeInTheDocument();
   });
 
@@ -196,7 +196,7 @@ describe("HelpRequestIndexPage tests", () => {
     await waitFor(() => {
       expect(axiosMock.history.delete.length).toBe(1);
     });
-    expect(axiosMock.history.delete[0].url).toBe("/api/helprequests");
+
     expect(axiosMock.history.delete[0].url).toBe("/api/helprequests");
     expect(axiosMock.history.delete[0].params).toEqual({ id: 2 });
   });
