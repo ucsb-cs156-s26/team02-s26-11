@@ -7,7 +7,7 @@ const menuItemReviewFixtures = {
     dateReviewed: "2026-03-10T10:10:10",
     comments: "it was good",
   },
-  threemenuItemReviews: [
+  threeMenuItemReviews: [
     {
       id: 1,
       itemId: 6,
