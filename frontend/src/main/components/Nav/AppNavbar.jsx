@@ -27,7 +27,7 @@ export default function AppNavbar({
       >
         <Container>
           <Navbar.Brand as={Link} to="/">
-            team02
+            Example
           </Navbar.Brand>
 
           <Navbar.Toggle />
@@ -76,6 +76,9 @@ export default function AppNavbar({
                   </Nav.Link>
                   <Nav.Link as={Link} to="/placeholder">
                     Placeholder
+                  </Nav.Link>
+                  <Nav.Link as={Link} to="/helprequest">
+                    Help Request
                   </Nav.Link>
                 </>
               ) : (
