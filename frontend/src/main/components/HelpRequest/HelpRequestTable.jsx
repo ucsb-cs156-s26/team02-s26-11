@@ -12,7 +12,7 @@ export default function HelpRequestsTable({ requests, currentUser }) {
   const navigate = useNavigate();
 
   const editCallback = (cell) => {
-    navigate(`/helprequest/edit/${cell.row.original.id}`);
+    navigate(`/helprequests/edit/${cell.row.original.id}`);
   };
 
   // Stryker disable all : hard to test for query caching
