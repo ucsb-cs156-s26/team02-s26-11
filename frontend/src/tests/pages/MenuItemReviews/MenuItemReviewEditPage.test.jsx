@@ -69,7 +69,7 @@ describe("MenuItemReviewEditPage tests", () => {
       );
       await screen.findByText("Edit MenuItemReview");
       expect(
-        screen.queryByTestId("MenuItemReview-itemId"),
+        screen.queryByTestId("MenuItemReviewForm-itemId"),
       ).not.toBeInTheDocument();
       restoreConsole();
     });
