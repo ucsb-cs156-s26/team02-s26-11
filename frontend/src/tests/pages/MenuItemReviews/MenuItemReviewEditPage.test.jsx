@@ -93,7 +93,7 @@ describe("MenuItemReviewEditPage tests", () => {
           itemId: 6,
           reviewerEmail: "anishjaiswal@ucsb.edu",
           stars: 3,
-          dateReviewed: "2026-03-10T10:10:10",
+          dateReviewed: "2026-03-10T10:10",
           comments: "it was good",
         });
       axiosMock.onPut("/api/menuitemreviews").reply(200, {
@@ -101,7 +101,7 @@ describe("MenuItemReviewEditPage tests", () => {
         itemId: 2,
         reviewerEmail: "jaiswal@ucsb.edu",
         stars: 4,
-        dateReviewed: "2026-02-10T10:10:10",
+        dateReviewed: "2026-02-10T10:10",
         comments: "it was good",
       });
     });
