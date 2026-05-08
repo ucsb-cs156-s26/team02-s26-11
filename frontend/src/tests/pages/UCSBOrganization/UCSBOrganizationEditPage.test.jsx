@@ -25,7 +25,7 @@ vi.mock("react-router", async (importOriginal) => {
   return {
     ...originalModule,
     useParams: vi.fn(() => ({
-      "orgCode": "ZPR",
+      orgCode: "ZPR",
     })),
     Navigate: vi.fn((x) => {
       mockNavigate(x);
@@ -47,7 +47,9 @@ describe("UCSBOrganizationEditPage tests", () => {
       axiosMock
         .onGet("/api/systemInfo")
         .reply(200, systemInfoFixtures.showingNeither);
-      axiosMock.onGet("/api/ucsborganization", { params: { orgCode: "ZPR" } }).timeout();
+      axiosMock
+        .onGet("/api/ucsborganization", { params: { orgCode: "ZPR" } })
+        .timeout();
     });
 
     afterEach(() => {
@@ -69,7 +71,9 @@ describe("UCSBOrganizationEditPage tests", () => {
         </QueryClientProvider>,
       );
       await screen.findByText("Edit UCSB Organization");
-      expect(screen.queryByTestId("UCSBOrganization-orgCode")).not.toBeInTheDocument();
+      expect(
+        screen.queryByTestId("UCSBOrganization-orgCode"),
+      ).not.toBeInTheDocument();
       restoreConsole();
     });
   });
@@ -85,12 +89,14 @@ describe("UCSBOrganizationEditPage tests", () => {
       axiosMock
         .onGet("/api/systemInfo")
         .reply(200, systemInfoFixtures.showingNeither);
-      axiosMock.onGet("/api/ucsborganization", { params: { orgCode: "ZPR" } }).reply(200, {
-        orgCode: "ZPR",
-        orgTranslationShort: "ZETA PHI RHO",
-        orgTranslation: "ZETA PHI RHO",
-        inactive: false,
-      });
+      axiosMock
+        .onGet("/api/ucsborganization", { params: { orgCode: "ZPR" } })
+        .reply(200, {
+          orgCode: "ZPR",
+          orgTranslationShort: "ZETA PHI RHO",
+          orgTranslation: "ZETA PHI RHO",
+          inactive: false,
+        });
       axiosMock.onPut("/api/ucsborganization").reply(200, {
         orgCode: "ZPR",
         orgTranslationShort: "ZETA PHI RHO edited",
@@ -120,8 +126,12 @@ describe("UCSBOrganizationEditPage tests", () => {
       await screen.findByTestId("UCSBOrganizationForm-orgCode");
 
       const orgCodeField = screen.getByTestId("UCSBOrganizationForm-orgCode");
-      const orgTranslationShortField = screen.getByTestId("UCSBOrganizationForm-orgTranslationShort");
-      const orgTranslationField = screen.getByTestId("UCSBOrganizationForm-orgTranslation");
+      const orgTranslationShortField = screen.getByTestId(
+        "UCSBOrganizationForm-orgTranslationShort",
+      );
+      const orgTranslationField = screen.getByTestId(
+        "UCSBOrganizationForm-orgTranslation",
+      );
 
       const submitButton = screen.getByTestId("UCSBOrganizationForm-submit");
 
@@ -172,8 +182,12 @@ describe("UCSBOrganizationEditPage tests", () => {
       await screen.findByTestId("UCSBOrganizationForm-orgCode");
 
       const orgCodeField = screen.getByTestId("UCSBOrganizationForm-orgCode");
-      const orgTranslationShortField = screen.getByTestId("UCSBOrganizationForm-orgTranslationShort");
-      const orgTranslationField = screen.getByTestId("UCSBOrganizationForm-orgTranslation");
+      const orgTranslationShortField = screen.getByTestId(
+        "UCSBOrganizationForm-orgTranslationShort",
+      );
+      const orgTranslationField = screen.getByTestId(
+        "UCSBOrganizationForm-orgTranslation",
+      );
       const submitButton = screen.getByTestId("UCSBOrganizationForm-submit");
 
       expect(orgCodeField).toHaveValue("ZPR");
@@ -184,7 +198,9 @@ describe("UCSBOrganizationEditPage tests", () => {
       fireEvent.change(orgTranslationShortField, {
         target: { value: "ZETA PHI RHO edited" },
       });
-      fireEvent.change(orgTranslationField, { target: { value: "ZETA PHI RHO edited" } });
+      fireEvent.change(orgTranslationField, {
+        target: { value: "ZETA PHI RHO edited" },
+      });
 
       fireEvent.click(submitButton);
 
