@@ -35,32 +35,32 @@ public class HelpRequestControllerTests extends ControllerTestCase {
 
   @MockBean UserRepository userRepository;
 
-  // Authorization tests for /api/helprequest/admin/all
+  // Authorization tests for /api/helprequests/admin/all
 
   @Test
   public void logged_out_users_cannot_get_all() throws Exception {
     mockMvc
-        .perform(get("/api/helprequest/all"))
+        .perform(get("/api/helprequests/all"))
         .andExpect(status().is(403)); // logged out users can't get all
   }
 
   @WithMockUser(roles = {"USER"})
   @Test
   public void logged_in_users_can_get_all() throws Exception {
-    mockMvc.perform(get("/api/helprequest/all")).andExpect(status().is(200)); // logged
+    mockMvc.perform(get("/api/helprequests/all")).andExpect(status().is(200)); // logged
   }
 
-  // Authorization tests for /api/helprequest/post
+  // Authorization tests for /api/helprequests/post
 
   @Test
   public void logged_out_users_cannot_post() throws Exception {
-    mockMvc.perform(post("/api/helprequest/post")).andExpect(status().is(403));
+    mockMvc.perform(post("/api/helprequests/post")).andExpect(status().is(403));
   }
 
   @WithMockUser(roles = {"USER"})
   @Test
   public void logged_in_regular_users_cannot_post() throws Exception {
-    mockMvc.perform(post("/api/helprequest/post")).andExpect(status().is(403));
+    mockMvc.perform(post("/api/helprequests/post")).andExpect(status().is(403));
   }
 
   @WithMockUser(roles = {"USER"})
@@ -98,7 +98,7 @@ public class HelpRequestControllerTests extends ControllerTestCase {
 
     // act
     MvcResult response =
-        mockMvc.perform(get("/api/helprequest/all")).andExpect(status().isOk()).andReturn();
+        mockMvc.perform(get("/api/helprequests/all")).andExpect(status().isOk()).andReturn();
 
     // assert
 
@@ -129,7 +129,7 @@ public class HelpRequestControllerTests extends ControllerTestCase {
     MvcResult response =
         mockMvc
             .perform(
-                post("/api/helprequest/post?requesterEmail=admin@ucsb.edu&teamId=11&tableOrBreakoutRoom=table&requestTime=2022-01-03T00:00:00&explanation=Testing&solved=true")
+                post("/api/helprequests/post?requesterEmail=admin@ucsb.edu&teamId=11&tableOrBreakoutRoom=table&requestTime=2022-01-03T00:00:00&explanation=Testing&solved=true")
                     .with(csrf()))
             .andExpect(status().isOk())
             .andReturn();
@@ -144,7 +144,7 @@ public class HelpRequestControllerTests extends ControllerTestCase {
   @Test
   public void logged_out_users_cannot_get_by_id() throws Exception {
     mockMvc
-        .perform(get("/api/helprequest?id=7"))
+        .perform(get("/api/helprequests?id=7"))
         .andExpect(status().is(403)); // logged out users can't get by id
   }
 
@@ -169,7 +169,7 @@ public class HelpRequestControllerTests extends ControllerTestCase {
 
     // act
     MvcResult response =
-        mockMvc.perform(get("/api/helprequest?id=7")).andExpect(status().isOk()).andReturn();
+        mockMvc.perform(get("/api/helprequests?id=7")).andExpect(status().isOk()).andReturn();
 
     // assert
 
@@ -189,7 +189,7 @@ public class HelpRequestControllerTests extends ControllerTestCase {
 
     // act
     MvcResult response =
-        mockMvc.perform(get("/api/helprequest?id=7")).andExpect(status().isNotFound()).andReturn();
+        mockMvc.perform(get("/api/helprequests?id=7")).andExpect(status().isNotFound()).andReturn();
 
     // assert
 
@@ -235,7 +235,7 @@ public class HelpRequestControllerTests extends ControllerTestCase {
     MvcResult response =
         mockMvc
             .perform(
-                put("/api/helprequest?id=67")
+                put("/api/helprequests?id=67")
                     .contentType(MediaType.APPLICATION_JSON)
                     .characterEncoding("utf-8")
                     .content(requestBody)
@@ -276,7 +276,7 @@ public class HelpRequestControllerTests extends ControllerTestCase {
     MvcResult response =
         mockMvc
             .perform(
-                put("/api/helprequest?id=67")
+                put("/api/helprequests?id=67")
                     .contentType(MediaType.APPLICATION_JSON)
                     .characterEncoding("utf-8")
                     .content(requestBody)
@@ -312,7 +312,7 @@ public class HelpRequestControllerTests extends ControllerTestCase {
     // act
     MvcResult response =
         mockMvc
-            .perform(delete("/api/helprequest").param("id", "15").with(csrf()))
+            .perform(delete("/api/helprequests").param("id", "15").with(csrf()))
             .andExpect(status().isOk())
             .andReturn();
 
@@ -335,7 +335,7 @@ public class HelpRequestControllerTests extends ControllerTestCase {
     // act
     MvcResult response =
         mockMvc
-            .perform(delete("/api/helprequest?id=15").with(csrf()))
+            .perform(delete("/api/helprequests?id=15").with(csrf()))
             .andExpect(status().isNotFound())
             .andReturn();
 
