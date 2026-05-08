@@ -4,7 +4,7 @@ import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 import { http, HttpResponse } from "msw";
 
 import MenuItemReviewEditPage from "main/pages/MenuItemReviews/MenuItemReviewEditPage";
-import { MenuItemReviewFixtures } from "fixtures/menuItemReviewFixtures";
+import { menuItemReviewFixtures } from "fixtures/menuItemReviewFixtures";
 
 export default {
   title: "pages/MenuItemreviews/MenuItemReviewEditPage",
@@ -27,7 +27,7 @@ Default.parameters = {
       });
     }),
     http.get("/api/menuitemreviews", () => {
-      return HttpResponse.json(MenuItemReviewFixtures.threeMenuItemReviews[0], {
+      return HttpResponse.json(menuItemReviewFixtures.threeMenuItemReviews[0], {
         status: 200,
       });
     }),
