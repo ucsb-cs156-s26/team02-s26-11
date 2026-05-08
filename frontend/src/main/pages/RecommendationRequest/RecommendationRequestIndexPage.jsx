@@ -14,9 +14,9 @@ export default function RecommendationRequestIndexPage() {
     status: _status,
   } = useBackend(
     // Stryker disable next-line all : hard to test React Query caching key
-    ["/api/recommendationrequests/all"],
+    ["/api/recommendationrequest/all"],
     // Stryker disable next-line all : hard to test React Query method config
-    { method: "GET", url: "/api/recommendationrequests/all" },
+    { method: "GET", url: "/api/recommendationrequest/all" },
     [],
   );
 

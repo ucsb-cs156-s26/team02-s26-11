@@ -47,7 +47,7 @@ describe("RecommendationRequestIndexPage tests", () => {
   test("Renders with Create Button for admin user", async () => {
     setupAdminUser();
     axiosMock
-      .onGet("/api/recommendationrequests/all")
+      .onGet("/api/recommendationrequest/all")
       .reply(200, recommendationRequestFixtures.threeRecommendationRequests);
 
     const queryClient = new QueryClient();
@@ -70,7 +70,7 @@ describe("RecommendationRequestIndexPage tests", () => {
   test("renders three recommendation requests correctly for regular user", async () => {
     setupUserOnly();
     axiosMock
-      .onGet("/api/recommendationrequests/all")
+      .onGet("/api/recommendationrequest/all")
       .reply(200, recommendationRequestFixtures.threeRecommendationRequests);
 
     const queryClient = new QueryClient();
@@ -98,7 +98,7 @@ describe("RecommendationRequestIndexPage tests", () => {
 
   test("renders empty table when backend unavailable, user only", async () => {
     setupUserOnly();
-    axiosMock.onGet("/api/recommendationrequests/all").timeout();
+    axiosMock.onGet("/api/recommendationrequest/all").timeout();
 
     const queryClient = new QueryClient();
 
@@ -120,7 +120,7 @@ describe("RecommendationRequestIndexPage tests", () => {
   test("what happens when you click edit, admin", async () => {
     setupAdminUser();
     axiosMock
-      .onGet("/api/recommendationrequests/all")
+      .onGet("/api/recommendationrequest/all")
       .reply(200, recommendationRequestFixtures.threeRecommendationRequests);
 
     const queryClient = new QueryClient();
@@ -150,10 +150,10 @@ describe("RecommendationRequestIndexPage tests", () => {
   test("what happens when you click delete, admin", async () => {
     setupAdminUser();
     axiosMock
-      .onGet("/api/recommendationrequests/all")
+      .onGet("/api/recommendationrequest/all")
       .reply(200, recommendationRequestFixtures.threeRecommendationRequests);
     axiosMock
-      .onDelete("/api/recommendationrequests")
+      .onDelete("/api/recommendationrequest")
       .reply(200, { message: "RecommendationRequest with id 1 deleted" });
 
     const queryClient = new QueryClient();

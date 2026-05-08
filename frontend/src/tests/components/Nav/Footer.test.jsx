@@ -43,7 +43,6 @@ describe("Footer tests", () => {
 
       const expectedText =
         "This is a sample webapp using React with a Spring Boot backend. See the source code on Github.";
-
       expect(screen.getByTestId("Footer").textContent).toBe(expectedText);
 
       const footer_see_source_code = screen.getByTestId(
