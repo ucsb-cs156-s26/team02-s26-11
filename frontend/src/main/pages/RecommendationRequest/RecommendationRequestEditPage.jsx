@@ -13,14 +13,14 @@ export default function RecommendationRequestEditPage({ storybook = false }) {
     _status,
   } = useBackend(
     // Stryker disable next-line all : hard to test React Query caching key
-    [`/api/recommendationrequests?id=${id}`],
+    [`/api/recommendationrequest?id=${id}`],
     // Stryker disable next-line all : hard to test React Query method config
-    { method: "GET", url: "/api/recommendationrequests", params: { id } },
+    { method: "GET", url: "/api/recommendationrequest", params: { id } },
     null,
   );
 
   const objectToAxiosParams = (recommendationRequest) => ({
-    url: "/api/recommendationrequests",
+    url: "/api/recommendationrequest",
     method: "PUT",
     params: {
       id,
@@ -45,7 +45,7 @@ export default function RecommendationRequestEditPage({ storybook = false }) {
     objectToAxiosParams,
     { onSuccess },
     // Stryker disable next-line all : hard to test React Query caching key
-    ["/api/recommendationrequests/all"],
+    ["/api/recommendationrequest/all"],
   );
 
   const { isSuccess } = mutation;

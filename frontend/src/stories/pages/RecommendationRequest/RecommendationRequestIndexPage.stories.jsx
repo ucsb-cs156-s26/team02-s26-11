@@ -26,7 +26,7 @@ Default.parameters = {
         status: 200,
       });
     }),
-    http.get("/api/recommendationrequests/all", () => {
+    http.get("/api/recommendationrequest/all", () => {
       return HttpResponse.json(
         recommendationRequestFixtures.threeRecommendationRequests,
         {
@@ -50,7 +50,7 @@ Admin.parameters = {
         status: 200,
       });
     }),
-    http.get("/api/recommendationrequests/all", () => {
+    http.get("/api/recommendationrequest/all", () => {
       return HttpResponse.json(
         recommendationRequestFixtures.threeRecommendationRequests,
         {

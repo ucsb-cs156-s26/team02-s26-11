@@ -26,7 +26,7 @@ Default.parameters = {
         status: 200,
       });
     }),
-    http.get("/api/recommendationrequests", () => {
+    http.get("/api/recommendationrequest", () => {
       return HttpResponse.json(
         recommendationRequestFixtures.oneRecommendationRequest,
         {
@@ -34,7 +34,7 @@ Default.parameters = {
         },
       );
     }),
-    http.put("/api/recommendationrequests", () => {
+    http.put("/api/recommendationrequest", () => {
       return HttpResponse.json(
         recommendationRequestFixtures.oneRecommendationRequest,
         {

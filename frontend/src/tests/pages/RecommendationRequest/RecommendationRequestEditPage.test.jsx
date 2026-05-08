@@ -50,7 +50,7 @@ describe("RecommendationRequestEditPage tests", () => {
     const queryClient = new QueryClient();
 
     axiosMock
-      .onGet("/api/recommendationrequests", { params: { id: "1" } })
+      .onGet("/api/recommendationrequest", { params: { id: "1" } })
       .timeout();
 
     render(
@@ -77,7 +77,7 @@ describe("RecommendationRequestEditPage tests", () => {
     const queryClient = new QueryClient();
 
     axiosMock
-      .onGet("/api/recommendationrequests", { params: { id: "1" } })
+      .onGet("/api/recommendationrequest", { params: { id: "1" } })
       .reply(200, recommendationRequestFixtures.oneRecommendationRequest);
 
     render(
@@ -123,7 +123,7 @@ describe("RecommendationRequestEditPage tests", () => {
     const queryClient = new QueryClient();
 
     axiosMock
-      .onGet("/api/recommendationrequests", { params: { id: "1" } })
+      .onGet("/api/recommendationrequest", { params: { id: "1" } })
       .reply(200, recommendationRequestFixtures.oneRecommendationRequest);
 
     const updatedRecommendationRequest = {
@@ -137,7 +137,7 @@ describe("RecommendationRequestEditPage tests", () => {
     };
 
     axiosMock
-      .onPut("/api/recommendationrequests")
+      .onPut("/api/recommendationrequest")
       .reply(200, updatedRecommendationRequest);
 
     render(
@@ -211,7 +211,7 @@ describe("RecommendationRequestEditPage tests", () => {
     const queryClient = new QueryClient();
 
     axiosMock
-      .onGet("/api/recommendationrequests", { params: { id: "1" } })
+      .onGet("/api/recommendationrequest", { params: { id: "1" } })
       .reply(200, recommendationRequestFixtures.oneRecommendationRequest);
 
     render(
