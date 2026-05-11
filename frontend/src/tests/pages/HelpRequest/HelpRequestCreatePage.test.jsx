@@ -141,6 +141,6 @@ describe("HelpRequestCreatePage tests", () => {
     expect(mockToast).toBeCalledWith(
       `New Help Request Created - id: ${helpRequest.id} requester: ${helpRequest.requesterEmail}`,
     );
-    expect(mockNavigate).toBeCalledWith({ to: "/helprequest" });
+    expect(mockNavigate).toBeCalledWith({ to: "/helprequests" });
   });
 });

@@ -179,7 +179,7 @@ describe("HelpRequestEditPage tests", () => {
       expect(mockToast).toBeCalledWith(
         `Help Request Updated - id: 3 requester: ExampleNew@testing.edu`,
       );
-      expect(mockNavigate).toBeCalledWith({ to: "/helprequest" });
+      expect(mockNavigate).toBeCalledWith({ to: "/helprequests" });
 
       expect(axiosMock.history.put.length).toBe(1); // times called
       expect(axiosMock.history.put[0].params).toEqual({ id: 3 });
@@ -252,7 +252,7 @@ describe("HelpRequestEditPage tests", () => {
       expect(mockToast).toBeCalledWith(
         `Help Request Updated - id: 3 requester: ExampleNew@testing.edu`,
       );
-      expect(mockNavigate).toBeCalledWith({ to: "/helprequest" });
+      expect(mockNavigate).toBeCalledWith({ to: "/helprequests" });
     });
   });
 });
