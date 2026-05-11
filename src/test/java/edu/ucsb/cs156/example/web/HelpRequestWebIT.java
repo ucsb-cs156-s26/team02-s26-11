@@ -16,11 +16,13 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ActiveProfiles("integration")
 @DirtiesContext(classMode = ClassMode.BEFORE_EACH_TEST_METHOD)
 public class HelpRequestWebIT extends WebTestCase {
+
   @Test
   public void admin_user_can_create_edit_delete_helprequest() throws Exception {
     setupUser(true);
 
-    page.getByText("HelpRequest").click();
+    // Fixed: Added space to match the Navbar text
+    page.getByText("Help Request").click();
 
     page.getByText("Create Help Request").click();
     assertThat(page.getByText("Create New Help Request")).isVisible();
@@ -75,7 +77,8 @@ public class HelpRequestWebIT extends WebTestCase {
   public void regular_user_cannot_create_helprequest() throws Exception {
     setupUser(false);
 
-    page.getByText("HelpRequest").click();
+    // Fixed: Added space to match the Navbar text
+    page.getByText("Help Request").click();
 
     assertThat(page.getByText("Create Help Request")).not().isVisible();
     assertThat(page.getByTestId("HelpRequestTable-cell-row-0-col-requesterEmail"))
