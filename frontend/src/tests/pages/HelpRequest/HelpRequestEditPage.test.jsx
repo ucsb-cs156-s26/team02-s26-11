@@ -252,7 +252,7 @@ describe("HelpRequestEditPage tests", () => {
       expect(mockToast).toBeCalledWith(
         `Help Request Updated - id: 3 requester: ExampleNew@testing.edu`,
       );
-      expect(mockNavigate).toBeCalledWith({ to: "/helprequest" });
+      expect(mockNavigate).toBeCalledWith({ to: "/helprequests" });
     });
   });
 });
